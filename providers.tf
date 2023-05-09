@@ -3,10 +3,10 @@ provider "aws" {
 
   default_tags {
     tags = {
-      "abrigo:service_domain" = "lz"
-      "abrigo:service"        = "control-tower"
-      "abrigo:env"            = "dev"
-      "abrigo:owner"          = "dan.nugent@abrigo.com"
+      "product"     = "lz"
+      "application" = "control-tower"
+      "environment" = "DEV"
+      "owner"       = "dan.nugent@abrigo.com"
     }
   }
 }
