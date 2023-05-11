@@ -1,6 +1,8 @@
 # Control Tower
 
-Create the KMS key used to encrypt logs in Control Tower's S3 bucket
+Create the KMS key used to encrypt logs in Control Tower's S3 bucket.
+
+Key policy comes from https://docs.aws.amazon.com/controltower/latest/userguide/configure-kms-keys.html
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
