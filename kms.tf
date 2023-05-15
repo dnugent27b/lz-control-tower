@@ -1,3 +1,4 @@
+data "aws_organizations_organization" "current" {}
 data "aws_caller_identity" "current" {}
 
 resource "aws_kms_key" "control_tower" {
@@ -47,6 +48,25 @@ resource "aws_kms_key_policy" "control_tower" {
             },
             "StringLike" : {
               "kms:EncryptionContext:aws:cloudtrail:arn" : "arn:aws:cloudtrail:*:${data.aws_caller_identity.current.account_id}:trail/*"
+            }
+          }
+        },
+        {
+          "Sid" : "Allow organizational users to use key to view logs",
+          "Effect" : "Allow",
+          "Principal" : {
+            "AWS" : "*"
+          },
+          "Action" : [
+            "kms:Decrypt",
+            "kms:Encrypt",
+            "kms:ReEncrypt*",
+            "kms:GenerateDataKey*"
+          ],
+          "Resource" : "*",
+          "Condition" : {
+            "StringEquals" : {
+              "aws:PrincipalOrgID" : data.aws_organizations_organization.current.id
             }
           }
         }
